@@ -1,46 +1,14 @@
 <script setup>
 import ProductCard from '@/components/ProductCard.vue';
 import Pagination from '@/components/Pagination.vue';
+import { ref } from 'vue';
 
-import { onBeforeUnmount, onUpdated, onBeforeMount, onBeforeUpdate, onMounted, ref, onUnmounted } from 'vue';
-
-const PAGE = ref(1);
-
-function nextPage() {
-	PAGE.value ++;
-}
-
-onBeforeMount(() => {
-	console.log('component will be mounted');
-});
-
-onMounted(() => {
-	console.log('component has been fully loaded');
-});
-
-onBeforeUpdate(() => {
-	console.log('component will be updated');
-});
-
-onUpdated(() => {
-	console.log('component has been updated');
-});
-
-onBeforeUnmount(() => {
-	console.log('component will be unmounted soon');
-});
-
-onUnmounted(() => {
-	console.log('component has been unmounted');
-});
 
 </script>
 
 
 <template>
 	<main>
-	{{ PAGE }}
-	<button @click="nextPage">Next</button>
 		<div class="product-grid">
 			<ProductCard />
 		</div>
