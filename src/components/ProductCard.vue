@@ -7,7 +7,7 @@ const { product } = defineProps({
 
 <template>
     <div class="product-card">
-        <img :src="product.image" :alt="product.title" class="product-image" />
+        <img v-bind:src="product.image" v-bind:alt="product.title" class="product-image" />
         <h2 class="product-title">{{ product.title }}</h2>
         <p class="product-description">{{ product.description }}</p>
         <span class="product-price">Rp {{ product.price }}</span>
