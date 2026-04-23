@@ -25,9 +25,11 @@ products.value = await axios
 
 <template>
 	<main>
-		{{  products }}
 		<div class="product-grid">
-			<ProductCard />
+			<ProductCard 
+			v-for="(product, index) in products" 
+			:key="product.id" 
+			:product="product" />
 		</div>
 		<div class="pagination">
 			<Pagination />
