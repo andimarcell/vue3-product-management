@@ -2,26 +2,35 @@
 import ProductCard from "@/components/ProductCard.vue";
 import Pagination from "@/components/Pagination.vue";
 
-import { ref, watch } from "vue";
+import { onMounted, ref, watch } from "vue";
 import axios from "axios";
 
 const products = ref([]);
 const page = ref(1);
 const limit = ref(8);
+const API_URL = `http://localhost:3000/products?_page=${page.value}&_per_page=${limit.value}`;
 
-products.value = await axios
-  .get(
-    `http://localhost:3000/products?_page=${page.value}&_per_page=${limit.value}
-		`,
-  )
-  .then((res) => res.data);
+onMounted(async () => {
+  products.value = await axios
+    .get(
+      API_URL
+    )
+    .then((res) => res.data);
+    // console.log('first fetch')
+});
+
+// products.value = await axios
+//   .get(
+//     `http://localhost:3000/products?_page=${page.value}&_per_page=${limit.value}
+// 		`,
+//   )
+//   .then((res) => res.data);
 // console.log(products.value);
 
 watch(page, async () => {
 	products.value = await axios
 		.get(
-			`http://localhost:3000/products?_page=${page.value}&_per_page=${limit.value}
-			`,
+			API_URL,
 		)
 		.then((res) => res.data);
 });
